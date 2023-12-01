@@ -26,7 +26,7 @@ flag5 = False
 
 
 surface = pygame.display.set_mode((ANCHO, ALTO))  # VENTANA
-fondo = pygame.image.load('fondo.jpeg').convert()
+fondo = pygame.image.load('2.jpeg').convert()
 pygame.mixer.music.load('maniacPiano2.mp3')
 pygame.mixer.music.play(3)
 
@@ -41,7 +41,7 @@ canastaX = 40
 canastaY = 405
 ancho = 170 - 40
 alto = 140
-velocidad = 2
+velocidad = 4
 fresaX = 10
 fresaY = 10
 ancho_fr = 50
@@ -63,7 +63,11 @@ clock = pygame.time.Clock()
 lim = 400
 pepinoY = 10
 pepinoX = 10
-velP = 1
+velP = 1 
+fresas_recogidas = 15
+rocas_recogidas = 0
+pepinos_recogidos = 10
+
 
 
 # IMAGENES (SE MOVERAN)
@@ -71,6 +75,12 @@ fresa = pygame.transform.scale(fresa, (50, 50))
 roca = pygame.transform.scale(roca, (50, 50))
 canasta = pygame.transform.scale(canasta, (170, 140))
 pepino = pygame.transform.scale(pepino,(50,50))
+
+# Cargar imágenes para contadores
+imagen_fresa = pygame.image.load('fresa.png')
+imagen_pepino = pygame.image.load('pepino.png')
+imagen_fresa = pygame.transform.scale(imagen_fresa, (50, 50))  # Ajusta el tamaño según sea necesario
+imagen_pepino = pygame.transform.scale(imagen_pepino, (50, 50))  # Ajusta el tamaño según sea necesario
 
 
 def marcador(surface, pu, tam, xm, ym):  # FUNCION PARA EL MARCADOR
@@ -98,12 +108,12 @@ class HiloFresa(threading.Thread):
         global fresaX, fresaY, velF, flag, flag2
         clock = pygame.time.Clock()
         while not flag:
-            clock.tick(60)  # Ajusta la velocidad del hilo a 60 fotogramas por segundo
+            clock.tick(60)
             if flag2 == False:
                 fresaY += velF
-                if fresaY > 550:
+                if fresaY > ALTO:
                     fresaY = 0
-                    fresaX = random.randint(4, 990)
+                    fresaX = random.randint(0, ANCHO - ancho_fr)
 
             pygame.event.pump()
 
@@ -116,12 +126,12 @@ class HiloPepino(threading.Thread):
         global pepinoX, pepinoY, velP, flag, flag3
         clock = pygame.time.Clock()
         while not flag:
-            clock.tick(60)  # Ajusta la velocidad del hilo a 60 fotogramas por segundo
-            if flag2 == False:
-                pepinoY += velF
-                if pepinoY > 550:
+            clock.tick(60)
+            if flag3 == False:
+                pepinoY += velP
+                if pepinoY > ALTO:
                     pepinoY = 0
-                    pepinoX = random.randint(4, 990)
+                    pepinoX = random.randint(0, ANCHO - ancho_fr)
 
             pygame.event.pump()
 
@@ -134,12 +144,12 @@ class HiloRoca(threading.Thread):
         global rocaX, rocaY, velr, flag, flag3
         clock = pygame.time.Clock()
         while not flag:
-            clock.tick(60)  # Ajusta la velocidad del hilo a 60 fotogramas por segundo
+            clock.tick(60)
             if flag3 == False:
                 rocaY += velr
-                if rocaY > 550:
+                if rocaY > ALTO:
                     rocaY = 0
-                    rocaX = random.randint(4, 990)
+                    rocaX = random.randint(0, ANCHO - ancho_ro)
 
             pygame.event.pump()
 
@@ -184,12 +194,12 @@ while not flag:
             rocaY = 0
             rocaX = random.randint(4, 990)
 
-    if flag4 == False: #Movimiento del pepino cayendo
-        # Modifica la velocidad de caída
-        velP = random.randint(0, 2)
-        if pepinoY > 550:
+    if flag4 == False:
+        velP = random.uniform(0.5, 1.5)  # Velocidad aleatoria para el pepino
+        pepinoY += velP
+        if pepinoY > ALTO:
             pepinoY = 0
-            pepinoX = random.randint(4, 990)
+            pepinoX = random.randint(0, ANCHO - ancho_fr)
 
         # Colision rocas
         if rocaX > canastaX + 9 and rocaX < canastaX + ancho and rocaY > 444:
@@ -203,27 +213,43 @@ while not flag:
     # Colision Fresas
     if fresaX > canastaX + 9 and fresaX < canastaX + ancho and fresaY > 444:
         score += 1
+        fresas_recogidas -=1
         fresaY = 0
         fresaX = random.randint(4, 990)
         velF +=.1
         velr +=.1
+        if fresas_recogidas == 0:
+            hilo_fresa.sleep()
 
     # Colision Pepinos
-    if pepinoX > canastaX + 9 and pepinoX < canastaX + ancho and pepinoY > 444:
+    if pepinoX > canastaX + 9 and pepinoX < canastaX + ancho and pepinoY > canastaY:
         score += 10
+        pepinos_recogidos -= 1
         pepinoY = 0
-        pepinoX = random.randint(4, 990)
-        velP +=.3
-        velF +=.3
-        velr +=.3
+        pepinoX = random.randint(0, ANCHO - ancho_fr)
+        velP += 0.3
+        velF += 0.3
+        velr += 0.3
+        if pepinos_recogidos == 0:
+            hilo_pepino.join()
 
+    # Mostrar imágenes en lugar de texto
     surface.blit(fondo, (0, 0))
     surface.blit(canasta, (canastaX, canastaY))
     surface.blit(fresa, (fresaX, fresaY))
     surface.blit(roca, (rocaX, rocaY))
-    surface.blit(pepino,(pepinoX, pepinoY))
-    marcador(surface, pu, tam, xm, ym)
-    draw_text(surface, str(score), tam, xs, ys)
+    surface.blit(pepino, (pepinoX, pepinoY))
+    
+    # Contadores en la esquina superior izquierda
+    surface.blit(imagen_fresa, (10, 10))
+    draw_text(surface, str(fresas_recogidas), tam, 70, 10)  # Número del contador de fresas
+    
+    surface.blit(imagen_pepino, (150, 10))
+    draw_text(surface, str(pepinos_recogidos), tam, 210, 10)  # Número del contador de pepinos
+    
+    # Puntaje en el centro
+    marcador(surface, pu + str(score), tam, ANCHO // 2, 10)
+
     pygame.display.update()
 
 

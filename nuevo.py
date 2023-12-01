@@ -26,7 +26,7 @@ flag5 = False
 
 
 surface = pygame.display.set_mode((ANCHO, ALTO))  # VENTANA
-fondo = pygame.image.load('fondo.jpeg').convert()
+fondo = pygame.image.load('1.jpeg').convert()
 pygame.mixer.music.load('maniacPiano2.mp3')
 pygame.mixer.music.play(3)
 
