@@ -1,0 +1,72 @@
+﻿2023-10-16 11:07:40, Info                  SP     CSetupPlatform::Initialize: Setup log starts:
+2023-10-16 11:07:40, Info                  SP     SEH: Enter CExceptionHandler::CExceptionHandler
+2023-10-16 11:07:40, Info                  SP     SEH: Exit CExceptionHandler::CExceptionHandler
+2023-10-16 11:07:40, Info                  SP     Host system information:
+                                   VM: NO
+                                   Firmware type: UEFI
+                                   Manufacturer: Dell Inc.
+                                   Model : Latitude 7490
+                                   BIOS name : 1.20.0
+                                   BIOS version : 1.20.0
+                                   BIOS release date : 20210519000000.000000+000
+                                   Total memory : 17179869184
+                                   Number of physical CPUs : 1
+                                   Number of logical CPUs : 8
+                                   Processor manufacturer : GenuineIntel
+                                   Processor name : Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz
+                                   Processor caption : Intel64 Family 6 Model 142 Stepping 10
+                                   Processor architecture : x64
+                                   Processor clock : 2112
+
+2023-10-16 11:07:40, Info                  SP     Antivirus software information:
+                                   Name: Windows Defender, Path: %ProgramFiles%\Windows Defender\MsMpeng.exe, Timestamp: Mon, 11 Sep 2023 19:22:18 GMT, State: 393472
+                                   Name: Avira Security, Path: C:\Program Files\Avira\Endpoint Protection SDK\wsc_agent.exe, Timestamp: Fri, 13 Oct 2023 17:51:07 GMT, State: 266240
+
+2023-10-16 11:07:40, Info                         SPGenerateCopyListFromConfigFile: Didn't find file list in C:\$Windows.~WS\Sources\setupplatform.cfg, section Footprint.Basic.x86
+2023-10-16 11:07:40, Info                         SPGetFootprintCapabilities: Starting verification of footprint section Footprint.Basic
+2023-10-16 11:07:40, Info                         SPGetFootprintCapabilities: Could not find footprint file C:\$Windows.~WS\Sources\reagent.admx
+2023-10-16 11:07:40, Warning                      SPGetFootprintCapabilities: Footprint [Footprint.Basic] incomplete; the platform capability will not be available
+2023-10-16 11:07:40, Info                         SPGenerateCopyListFromConfigFile: Didn't find file list in C:\$Windows.~WS\Sources\setupplatform.cfg, section Footprint.Servicing.x86
+2023-10-16 11:07:40, Info                         SPGetFootprintCapabilities: Starting verification of footprint section Footprint.Servicing
+2023-10-16 11:07:40, Info                         SPGetFootprintCapabilities: Could not find footprint file C:\$Windows.~WS\Sources\dismapi.dll
+2023-10-16 11:07:40, Warning                      SPGetFootprintCapabilities: Footprint [Footprint.Servicing] incomplete; the platform capability will not be available
+2023-10-16 11:07:40, Info                         SPGenerateCopyListFromConfigFile: Didn't find file list in C:\$Windows.~WS\Sources\setupplatform.cfg, section Footprint.ICB.x86
+2023-10-16 11:07:40, Info                         SPGetFootprintCapabilities: Starting verification of footprint section Footprint.ICB
+2023-10-16 11:07:40, Info                         SPGetFootprintCapabilities: Could not find footprint file C:\$Windows.~WS\Sources\cmi2migxml.dll
+2023-10-16 11:07:40, Warning                      SPGetFootprintCapabilities: Footprint [Footprint.ICB] incomplete; the platform capability will not be available
+2023-10-16 11:07:40, Info                         SPGenerateCopyListFromConfigFile: Didn't find file list in C:\$Windows.~WS\Sources\setupplatform.cfg, section Footprint.Migration.x86
+2023-10-16 11:07:40, Info                         SPGetFootprintCapabilities: Starting verification of footprint section Footprint.Migration
+2023-10-16 11:07:40, Info                         SPGetFootprintCapabilities: Could not find footprint file C:\$Windows.~WS\Sources\cmi2migxml.dll
+2023-10-16 11:07:40, Warning                      SPGetFootprintCapabilities: Footprint [Footprint.Migration] incomplete; the platform capability will not be available
+2023-10-16 11:07:40, Info                         Initializing diagnostics helper; data file = (NULL)
+2023-10-16 11:07:40, Info                         No existing diagnostics data
+2023-10-16 11:07:40, Info                         Reading onesetting for tracing settings
+2023-10-16 11:07:40, Warning                      Onesettings: Failed to get DeviceId from registry: 0x80070002
+2023-10-16 11:07:40, Warning                      Onesettings: Failed to initialize and query: 0x80070002
+2023-10-16 11:07:40, Warning                      Failed to create OneSettings infrastructure. Error: 0x0880070002
+2023-10-16 11:07:40, Info                         Reading onesetting for tracing settings completed, Error: 0x80070002
+2023-10-16 11:07:40, Warning                      No onesetting configured or error getting onesetting
+2023-10-16 11:07:40, Info                         Key CollectTrace is not available.
+2023-10-16 11:07:40, Warning               SP     CSetupPlatform::Initialize: Failed to initialize tracing
+2023-10-16 11:07:40, Info                         There is already a running setup user mode etw session!
+2023-10-16 11:07:40, Info                         VDS available
+2023-10-16 11:07:40, Info                         Key CollectTrace is not available.
+2023-10-16 11:07:40, Info                  SP     Attempting to resurrect a new system from C:\$Windows.~BT\Sources
+2023-10-16 11:07:40, Warning               SP     CSetupPlatform::ResurrectNewSystem: Cannot find new system serialized data.
+2023-10-16 11:07:40, Info                  SP     SetupPlatform opted-in to sqm
+2023-10-16 11:07:40, Info                         Set Watson bucketing parameter #0 to 7
+2023-10-16 11:07:40, Info                         Set Watson bucketing parameter #1 to 8
+2023-10-16 11:07:40, Info                         Set Watson bucketing parameter #4 to 0x0
+2023-10-16 11:07:40, Info                         Set Watson bucketing parameter #5 to 0xA001C
+2023-10-16 11:07:40, Info                         Set Watson bucketing parameter #3 to 0
+2023-10-16 11:07:40, Info                         Set Watson bucketing parameter #6 to 19045
+2023-10-16 11:07:40, Info                         Set Watson bucketing parameter #7 to vb_release
+2023-10-16 11:07:40, Info                  SP     SetupPlatform opted-in to sqm
+2023-10-16 11:07:40, Info                  SP     Suspending and releasing setup platform
+2023-10-16 11:07:41, Info                         Copy telemetry file: source folder: C:\$Windows.~WS\Sources\Panther, destination folder: C:\ProgramData\Microsoft\Diagnosis\ETLLogs
+2023-10-16 11:07:41, Info                         Copy etl files: source: C:\$Windows.~WS\Sources\Panther\DlTel-Merge.etl, destination: C:\ProgramData\Microsoft\Diagnosis\ETLLogs\DlTel-Merge.etl
+2023-10-16 11:07:41, Info                         pCopyTelemetryFile: Wrote CV JAB9es40PUO3YpMF.2 to ETL C:\ProgramData\Microsoft\Diagnosis\ETLLogs\DlTel-Merge.etl:$ETLUNIQUECVDATA
+2023-10-16 11:07:41, Info                         Diagtrack service is running
+2023-10-16 11:07:44, Info                         Successfully Forceuploaded the telemetry data.
+2023-10-16 11:07:44, Info                         Upload files successfully so we can remove all etl files.
+2023-10-16 11:07:44, Info                  SP     Closing Panther Logging
