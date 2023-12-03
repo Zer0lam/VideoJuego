@@ -27,12 +27,15 @@ flag2 = False
 flag3 = False
 flag4 = False
 flag5 = False
+# Cargar imágenes para el icono
+icono = pygame.image.load('BRAFP-27-11-2023.png')  # Reemplaza 'icono.png' con la ruta de tu archivo de icono
 
 # Crear una instancia de UIManager
 manager = UIManager((ANCHO, ALTO))
 
 surface = pygame.display.set_mode((ANCHO, ALTO))  # VENTANA
 fondo = pygame.image.load('1.jpg').convert()
+pygame.display.set_icon(icono)
 pygame.mixer.music.load('maniacPiano2.mp3')
 pygame.mixer.music.play(3)
 
