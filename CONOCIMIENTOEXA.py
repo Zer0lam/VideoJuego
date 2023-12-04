@@ -7,7 +7,7 @@ pygame.mixer.init() #se importa libreria para sonidos
 import random #random
 #interfaz
 #CONSTANTES #CONSTANTES #asdsakd
-ANCHO=1000
+ANCHO=1000 #ya
 ALTO=550
 COLOR_BG=(200,151,193)
 NEGRO=(0,0,0)
