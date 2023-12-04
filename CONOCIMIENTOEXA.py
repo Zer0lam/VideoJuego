@@ -4,7 +4,7 @@ import pygame, sys
 from pygame.locals import* # Import
 pygame.init()
 pygame.mixer.init() #se importa libreria para sonidos 
-import random
+import random #random
 #interfaz
 #CONSTANTES #CONSTANTES
 ANCHO=1000
