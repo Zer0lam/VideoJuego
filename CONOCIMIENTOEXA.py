@@ -5,7 +5,7 @@ from pygame.locals import* # Import inasin
 pygame.init()
 pygame.mixer.init() #se importa libreria para sonidos 
 import random #random
-#interfaz #1
+#interfaz #1 #owhefiwenf
 #CONSTANTES #CONSTANTES #asdsakd
 ANCHO=1000 #ya
 ALTO=550
