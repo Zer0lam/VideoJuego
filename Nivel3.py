@@ -223,7 +223,7 @@ def pantalla_victoria_confeti():
     sys.exit()     # Salir del programa
 
 def pantalla_derrota():
-    global score, fresas_faltantes, bananas_faltantes, remolachas_faltantes, arandanos_faltantes, vida
+    global score, fresas_faltantes, bananas_faltantes, remolachas_faltantes, arandanos_faltantes, vida, velr, velF, velP, remolachas_recogidas, arandanos_recogidos, fresas_recogidas, bananas_recogidos
     # Dibujar fondo gris semitransparente
     fondo_derrota = pygame.Surface((700, 450), pygame.SRCALPHA)
     pygame.draw.rect(fondo_derrota, (243, 243, 243, 170), (300, 100, 500, 600))
@@ -247,10 +247,17 @@ def pantalla_derrota():
                 if space_pressed:
                    # Reiniciar el nivel
                     score = 0
+                    remolachas_recogidas = 0
                     remolachas_faltantes = 10
+                    arandanos_recogidos = 0
                     arandanos_faltantes = 10
+                    fresas_recogidas = 0
                     fresas_faltantes = 10
+                    bananas_recogidos = 0
                     bananas_faltantes = 10
+                    velF = 1
+                    velP = 1
+                    velr = 1
                     vida = 100
                     return
                 else:
@@ -471,9 +478,12 @@ while not flag:
                     vida -= 33
                     score -= 1
                     rocaY = 0
+                    if score <= 0:
+                        score = 0  # Asegurarse de que el contador no sea negativo
                     rocaX = random.randint(4, 990)
                     velr -= 0.1
                     velF -= 0.1
+                    velP -= 0.1
                     if vida <= 0:
                         pantalla_derrota()
 
@@ -488,6 +498,7 @@ while not flag:
             fresaX = random.randint(4, 990)
             velF += 0.1
             velr += 0.1
+            velP += 0.1
 
         # Colision bananass
         if bananasX > canastaX + 9 and bananasX < canastaX + ancho and bananasY > canastaY:
@@ -509,6 +520,8 @@ while not flag:
                     vida -= 33
                     score -= 1
                     gusanoY = 0
+                    if score <= 0:
+                        score = 0  # Asegurarse de que el contador no sea negativo
                     gusanoX = random.randint(4, 990)
                     velr -= 0.1
                     velF -= 0.1
@@ -526,6 +539,7 @@ while not flag:
             remolachaX = random.randint(4, 990)
             velF += 0.1
             velr += 0.1
+            velP += 0.1
 
         # Colision arandanoss
         if arandanosX > canastaX + 9 and arandanosX < canastaX + ancho and arandanosY > canastaY:

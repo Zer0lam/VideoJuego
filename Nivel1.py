@@ -189,7 +189,7 @@ def pantalla_victoria_confeti():
     sys.exit()     # Salir del programa
 
 def pantalla_derrota():
-    global score, fresas_faltantes, bananas_faltantes, vida
+    global score, fresas_faltantes, bananas_faltantes, vida, fresas_recogidas, bananas_recogidos, velr, velF, velP
     # Dibujar fondo gris semitransparente
     fondo_derrota = pygame.Surface((700, 450), pygame.SRCALPHA)
     pygame.draw.rect(fondo_derrota, (243, 243, 243, 170), (300, 100, 500, 600))
@@ -214,11 +214,14 @@ def pantalla_derrota():
                    # Reiniciar el nivel
                     score = 0
                     fresas_faltantes = 7
+                    fresas_recogidas = 0
                     bananas_faltantes = 8
+                    bananas_recogidos = 0
+                    velF = 1
+                    velP = 1
+                    velr = 1
                     vida = 100
                     return
-                else:
-                    pass
         
         surface.fill((255, 255, 255))
         surface.blit(fondo, (0, 0))
@@ -269,7 +272,7 @@ class Hilobananas(HiloBase):
 
     def move_logic(self):
         global bananasX, bananasY, velP
-        bananasY += velF
+        bananasY += velP
         if bananasY > ALTO:
             bananasY = 0
             bananasX = random.randint(0, ANCHO - ancho_fr)
@@ -370,8 +373,11 @@ while not flag:
                     score -= 1
                     rocaY = 0
                     rocaX = random.randint(4, 990)
+                    if score <= 0:
+                        score = 0  # Asegurarse de que el contador no sea negativo
                     velr -= 0.1
                     velF -= 0.1
+                    velP -= 0.1
                     if vida <= 0:
                         pantalla_derrota()
 
@@ -386,6 +392,7 @@ while not flag:
             fresaX = random.randint(4, 990)
             velF += 0.1
             velr += 0.1
+            velP += 0.1
 
         # Colision bananass
         if bananasX > canastaX + 9 and bananasX < canastaX + ancho and bananasY > canastaY:

@@ -56,12 +56,12 @@ remolachaX = 10
 remolachaY = 10
 ancho_fr = 50
 alto_fr = 50
-velF = 1
+velR = 1
 gusanoX = 20
 gusanoY = 10
 ancho_ro = 50
 alto_ro = 50
-velr = 1
+velG = 1
 score = 0
 xm = 494
 ym = 20
@@ -77,7 +77,7 @@ clock = pygame.time.Clock()
 lim = 400
 arandanosY = 10
 arandanosX = 10
-velP = 1 
+velA = 1 
 gusanos_recogidas = 0
 remolachas_recogidas = 0
 remolachas_faltantes = 12
@@ -190,7 +190,7 @@ def pantalla_victoria_confeti():
     sys.exit()     # Salir del programa
 
 def pantalla_derrota():
-    global score, remolachas_faltantes, arandanos_faltantes, vida
+    global score, remolachas_faltantes, arandanos_faltantes, vida, remolachas_recogidas, arandanos_recogidos, velG, velA, velR
     # Dibujar fondo gris semitransparente
     fondo_derrota = pygame.Surface((700, 450), pygame.SRCALPHA)
     pygame.draw.rect(fondo_derrota, (243, 243, 243, 170), (300, 100, 500, 600))
@@ -214,8 +214,13 @@ def pantalla_derrota():
                 if space_pressed:
                    # Reiniciar el nivel
                     score = 0
+                    remolachas_recogidas = 0
                     remolachas_faltantes = 12
+                    arandanos_recogidos = 0
                     arandanos_faltantes = 15
+                    velA = 1
+                    velR = 1
+                    velG = 1
                     vida = 100
                     return
                 else:
@@ -257,8 +262,8 @@ class Hiloremolacha(HiloBase):
         super().__init__()
 
     def move_logic(self):
-        global remolachaX, remolachaY, velF
-        remolachaY += velF
+        global remolachaX, remolachaY, velR
+        remolachaY += velR
         if remolachaY > 550:
             remolachaY = 0
             remolachaX = random.randint(4, 990)
@@ -269,8 +274,8 @@ class Hiloarandanos(HiloBase):
         super().__init__()
 
     def move_logic(self):
-        global arandanosX, arandanosY, velP
-        arandanosY += velF
+        global arandanosX, arandanosY, velA
+        arandanosY += velR
         if arandanosY > ALTO:
             arandanosY = 0
             arandanosX = random.randint(0, ANCHO - ancho_fr)
@@ -281,8 +286,8 @@ class Hilogusano(HiloBase):
         super().__init__()
 
     def move_logic(self):
-        global gusanoX, gusanoY, velr
-        gusanoY += velF
+        global gusanoX, gusanoY, velG
+        gusanoY += velR
         if gusanoY > 550:
             gusanoY = 0
             gusanoX = random.randint(4, 990)
@@ -348,20 +353,20 @@ while not flag:
         canastaX = max(0, min(canastaX, ANCHO - ancho))
 
         if flag2 == False:  # Movimiento de la remolacha cayendo
-            remolachaY += velF
+            remolachaY += velR
             if remolachaY > 550:
                 remolachaY = 0
                 remolachaX = random.randint(4, 990)
 
         if flag3 == False:  # Movimiento de la gusano cayendo
-            gusanoY += velr
+            gusanoY += velG
             if gusanoY > 550:
                 gusanoY = 0
                 gusanoX = random.randint(4, 990)
 
         if flag4 == False:
-            velP = random.uniform(0.5, 1.5)  # Velocidad aleatoria para el arandanos
-            arandanosY += velP
+            velA = random.uniform(0.5, 1.5)  # Velocidad aleatoria para el arandanos
+            arandanosY += velA
             if arandanosY > ALTO:
                 arandanosY = 0
                 arandanosX = random.randint(0, ANCHO - ancho_fr)
@@ -371,10 +376,13 @@ while not flag:
                 with mutex:  # Usar el semáforo
                     vida -= 33
                     score -= 1
+                    if score <= 0:
+                        score = 0  # Asegurarse de que el contador no sea negativo
                     gusanoY = 0
                     gusanoX = random.randint(4, 990)
-                    velr -= 0.1
-                    velF -= 0.1
+                    velG -= 0.1
+                    velR -= 0.1
+                    velA -= 0.1
                     if vida <= 0:
                         pantalla_derrota()
 
@@ -387,8 +395,9 @@ while not flag:
                 remolachas_faltantes = 0  # Asegurarse de que el contador no sea negativo
             remolachaY = 0
             remolachaX = random.randint(4, 990)
-            velF += 0.1
-            velr += 0.1
+            velR += 0.1
+            velG += 0.1
+            velA += 0.1
 
         # Colision arandanoss
         if arandanosX > canastaX + 9 and arandanosX < canastaX + ancho and arandanosY > canastaY:
@@ -400,9 +409,9 @@ while not flag:
                 arandanos_faltantes = 0  # Asegurarse de que el contador no sea negativo
             arandanosY = 0
             arandanosX = random.randint(0, ANCHO - ancho_fr)
-            velP += 0.3
-            velF += 0.3
-            velr += 0.3 
+            velA += 0.3
+            velR += 0.3
+            velG += 0.3 
 
         # Mostrar imágenes en lugar de texto
         surface.blit(fondo, (0, 0))
