@@ -6,7 +6,7 @@ pygame.init()
 pygame.mixer.init()
 import random
 
-#CONSTANTES 
+#CONSTANTES #CONSTANTES
 ANCHO=1000
 ALTO=550
 COLOR_BG=(200,151,193)
