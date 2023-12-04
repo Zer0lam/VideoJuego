@@ -3,7 +3,7 @@ from tkinter import Y
 import pygame, sys
 from pygame.locals import*
 pygame.init()
-pygame.mixer.init()
+pygame.mixer.init() #se importa libreria para sonidos 
 import random
 
 #CONSTANTES #CONSTANTES
