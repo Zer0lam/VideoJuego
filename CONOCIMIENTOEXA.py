@@ -5,7 +5,7 @@ from pygame.locals import* # Import
 pygame.init()
 pygame.mixer.init() #se importa libreria para sonidos 
 import random
-
+#interfaz
 #CONSTANTES #CONSTANTES
 ANCHO=1000
 ALTO=550
