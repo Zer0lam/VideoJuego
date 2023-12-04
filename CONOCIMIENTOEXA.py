@@ -1,5 +1,5 @@
 from enum import Flag
-from tkinter import Y
+from tkinter import Y #Comentario 
 import pygame, sys
 from pygame.locals import* # Import
 pygame.init()
