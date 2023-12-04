@@ -11,7 +11,7 @@ ANCHO=1000 #ya
 ALTO=550
 COLOR_BG=(200,151,193) #aerejejeaje
 NEGRO=(0,0,0)
-BLANCO=(255, 255, 255)
+BLANCO=(255, 255, 255) #aisduadsuihid
 COLOR=(154, 13, 176)
 #noseee
 #VARIABLES 
