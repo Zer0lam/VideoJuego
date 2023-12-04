@@ -1,7 +1,7 @@
 from enum import Flag
 from tkinter import Y
 import pygame, sys
-from pygame.locals import*
+from pygame.locals import* # Import
 pygame.init()
 pygame.mixer.init() #se importa libreria para sonidos 
 import random
